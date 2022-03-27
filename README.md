@@ -1,39 +1,39 @@
 # H-ELF
-This is a subset (and parody) of W3C Working Draft Extended Log File Format for humans
-
-# _- "_
+This is a subset (and parody) of [W3C Working Draft Extended Log File Format](http://www.w3.org/pub/WWW/TR/WD-logfile-960221.html) [&#91;ELF&#93;](#References) for humans.
 
 ## Abstract
-An improved format for Web server log files is presented. The format is extensible, permitting a wider range of data to be captured. This proposal is motivated by the need to capture a wider range of data for demographic analysis and also the needs of proxy caches.
+An improved format for human log files (such as diaries and journals) is presented. The format is extensible, permitting a wider range of human data to be captured. This proposal is motivated by the need to capture a wider range of journal data for analysis and also the future need for diaries for the artificially intelligent of the future.
 
 ## Introduction
-Most Web servers offer the option to store logfiles in either the [common log format](http://www.w3.org/pub/WWW/Daemon/User/Config/Logging.html#common_logfile_format) or a proprietary format. The common log file format is supported by the majority of analysis tools but the information about each server transaction is fixed. In many cases it is desirable to record more information. Sites sensitive to personal data issues may wish to omit the recording of certain data. In addition ambiguities arise in analyzing the common log file format since field separator characters may in some cases occur within fields. The extended log file format is designed to meet the following needs:
+Most notebooks offer the option of usage as logfiles in whatever format the human author may choose. The [common log file](http://www.w3.org/pub/WWW/Daemon/User/Config/Logging.html#common_logfile_format) [&#91;CLF&#93;](#References) and extended log file formats are supported by the majority of software analysis tools, however they are not designed for human loggers. In many cases it is desirable to record human information by a human. Human loggers proficient in programming may wish to include the recording of emotional and cognitive data. In addition, ambiguities arise in analyzing the common log file and extended log file formats, since they provide no option to convey how the human logger feels. The human-extended log file format is designed to meet the following needs:
 
-- Permit control over the data recorded.
-- Support needs of proxies, clients and servers in a common format
-- Provide robust handling of character escaping issues
-- Allow exchange of demographic data.
-- Allow summary data to be expressed.
+- Permit diary entries.
+- Support needs of user's therapists.
+- Provide robust handling of poor human memory.
+- Allow exchange of the human logger's psychological data.
+- Allow emotional summary data to be expressed.
 
-The log file format described permits customized logfiles to be recorded in a format readable by generic analysis tools. A header specifying the data types recorded is written out at the start of each log.
+The log file format described permits customized logfiles to be recorded in a format readable by generic analysis tools. A header specifying the data types recorded is written out at the start of each log just like in extended log file format.
 
-This work is in part motivated by the need to support collection of demographic data. This work is discussed at greater length in companion drafts describing [session identifier URIs](http://www.w3.org/pub/WWW/TR/WD-session-id) [\[Hallam96a\]](https://www.w3.org/TR/WD-logfile.html#Hallam96a) and more consistent [proxy behaviour](http://www.w3.org/pub/WWW/TR/WD-proxy) [\[Hallam96b\]](https://www.w3.org/TR/WD-logfile.html#Hallam96b).
+This work is in part motivated by the need to support recollection of emotional data. This work is discussed at greater length on reddit.
 
 ## Format
-An extended log file contains a sequence of _lines_ containing ASCII characters terminated by either the sequence LF or CRLF. Log file generators should follow the line termination convention for the platform on which they are executed. Analyzers should accept either form. Each line may contain either a directive or an entry.
+A human-extended log file contains a sequence of _lines_ containing ASCII characters terminated by either the sequence LF or CRLF. Human and humanlike loggers should follow the line termination convention for the platform or paper on which they are executed. Analyzers should accept either form. Each line may contain either a directive or an entry.
 
-Entries consist of a sequence of fields relating to a single HTTP transaction. Fields are separated by whitespace, the use of tab characters for this purpose is encouraged. If a field is unused in a particular entry dash "-" marks the omitted field. Directives record information about the logging process itself.
+Entries consist of a sequence of fields relating to a single server transaction or human journal entry. Fields are separated by whitespace not contained by a string, the use of tab characters for this purpose is encouraged. If a field is unused in a particular entry, dash "-" marks the omitted field. Directives record information about the logging process itself.
 
 Lines beginning with the # character contain directives. The following directives are defined:
 
 Directives:|Definitions:
 :-----:|:------
 Version:|_\<integer\>.\<integer\>_
-&nbsp;|The version of the extended log file format used. This draft defines version 1.0.
+&nbsp;|The version of the extended log file format used. This extended log file format working draft this extends defines version 1.0.
 Fields:|_[\<specifier\>…]_
 &nbsp;|Specifies the fields recorded in the log.
 Software:|_string_
 &nbsp;|Identifies the software which generated the log.
+Author:|_string_
+&nbsp;|Identifies the human which generated the log.
 Start-Date:|_\<date\> \<time\>_
 &nbsp;|The date and time at which the log was started.
 End-Date:|_\<date\> \<time\>_
@@ -47,16 +47,14 @@ The directives `Version` and `Fields` are required and should precede all entrie
 
 ### Example
 
-The following is an example file in the extended log format:
+The following is an example file in the human extended log format:
 
 ```
 #Version: 1.0
-#Date: 12-Jan-1996 00:00:00
-#Fields: time cs-method cs-uri
-00:34:23 GET /foo/bar.html
-12:21:16 GET /foo/bar.html
-12:45:52 GET /foo/bar.html
-12:57:34 GET /foo/bar.html
+#Date: 2022-03-27 05:43:32
+#Author: smartguy1196, Nicholas Jackson
+#Fields: time h-emotion h-thought
+05:43:47 regret "monkey"
 ```
 
 ## Fields
@@ -67,13 +65,23 @@ Field Identifier Items:|Definitions:
 :-----:|:------
 _identifier_:|Identifier relates to the transaction as a whole.
 _prefix-identifier_:|Identifier relates to information transfer between parties defined by the value prefix.
-_prefix(header)_:|Identifies the value of the HTTP header field header for transfer between parties defined by the value prefix. Fields specified in this manner always have the value \<string\>.
+_prefix(header)_:|Identifies the value of the HTTP header field header for transfer between parties defined by the value prefix. Fields specified in this manner always have the value \<string\>. This is maintained from extended log file format.
 
 The following prefixes are defined:
 
 Field Prefixes:|Definitions:
-:-----:|:------
-c:|Client
+:-----:|:------:
+h:|Human
+a:|Artificial Intelligence
+c:|Client or Computer
+hh:|Human to Human
+aa:|Artificial Intelligence to Artificial Intelligence
+ha:|Human to Artificial Intelligence
+ah:|Artificial Intelligence to Human
+hc:|Human to Computer
+ch:|Computer to Human
+ac:|Artificial Intelligence to Computer
+ca:|California
 s:|Server
 r:|Remote
 cs:|Client to Server.
@@ -82,7 +90,7 @@ sr:|Server to Remote Server, this prefix is used by proxies.
 rs:|Remote Server to Server, this prefix is used by proxies.
 x:|Application specific identifier.
 
-The identifier `cs-method` thus refers to the method in the request sent by the client to the server while `sc(Referer)` refers to the `referer`: field of the reply. The identifier `c-ip` refers to the client's ip address.
+The identifier `h-emotion` thus refers to the emotion expressed by the human while `a(Referer)` refers to the `referer`: field of the reply by an artificial intelligence. The identifier `a-ip` refers to the artificial intelligence's ip address.
 
 ## Identifiers.
 The following identifiers do not require a prefix
@@ -110,18 +118,18 @@ uri-query:|Query portion alone of URI, field has type \<uri\>
 
 ## Special fields for log summaries.
 
-Analysis tools may generate log summaries. A log summary entry begins with a count specifying the number of times a particular even occurred. For example a site may be interested in a count of the number of requests for a particular URI with a given `referer:` field but not be interested in recording information about individual requests such as the IP address.
+Analysis tools may generate log summaries. A log summary entry begins with a count specifying the number of times a particular event occurred. For example a therapist may be interested in a count of the number of thoughts of a particular memory with a given `h-emotion` field, but not be interested in recording information about individual requests such as the IP address.
 
 The following field is mandatory and must precede all others:
 
 Field Identifiers:|Definitions:
-:-----:|:------
+:-----:|:------:
 count:|The number of entries for which the listed data, field has type \<integer\>
 
 The following fields may be used in place of time to allow aggregation of log file entries over intervals of time.
 
 Field Identifiers:|Definitions:
-:-----:|:------
+:-----:|:------:
 time-from:|Time at which sampling began, field has type \<time\>
 time-to:|Time at which sampling ended, field has type \<time\>
 interval:|Time over which sampling occurred in seconds, field has type \<integer\>
@@ -217,18 +225,7 @@ Robert Thau provided useful advice and some code. John Mallery and Roger Hurwitz
 
 ## References
 
-Reference:|Citation:
-:-----:|:------:
-\[RFC1808\]|R. Fielding [_Relative Uniform Resource Locators_](http://ds.internic.net/rfc/rfc1808.txt), June 1995
-\[RFC1738\]|T. Berners-Lee, L. Masinter, [_Uniform Resource Locators (URL)_](http://ds.internic.net/rfc/rfc1738.txt), December 1994
-\[Luotonen95\]|A. Luotonen, [_The Common Logfile Format_](http://www.w3.org/pub/WWW/Daemon/User/Config/Logging.html#common_logfile_format), 1995, ht<span>tp://</span>www.<span>w3.</span>org/pub/WWW/Daemon/User/Config/Logging.html
-\[Hallam96a\]|P. M. Hallam-Baker [_Session Identification URI_](http://www.w3.org/pub/WWW/TR/WD-session-id) World Wide Web Consortium Working Draft, WD-session-id.
-\[Hallam96b\]|P. M. Hallam-Baker [_Notification for Proxy Caches_](http://www.w3.org/pub/WWW/TR/WD-proxy) World Wide Web Consortium Working Draft, WD-proxy.
-
-# _" - [&#91;W3C-ELF&#93;](http://www.w3.org/pub/WWW/TR/WD-logfile-960221.html)
-
-# References
-
-Reference:|Citation:
-:-----:|:------:
-\[W3C-ELF\]|[_Extended Log File Format_](http://www.w3.org/pub/WWW/TR/WD-logfile-960221.html), P. M. Hallam-Baker, B. Behlendorf. World Wide Web Consortium, 23 March 1996. This edition of the Extended Log File Format Working Draft is ht<span>tp://</span>www.<span>w3.</span>org/pub/WWW/TR/WD-logfile-960221.html. The [latest edition of Extended Log File Format](https://www.w3.org/TR/WD-logfile.html) is available at ht<span>tp://</span>www.<span>w3.</span>org/TR/WD-logfile.html
+Reference Titles:|Citations:
+:-----:|:------
+\[CLF\]|[_The Common Logfile Format_](http://www.w3.org/pub/WWW/Daemon/User/Config/Logging.html#common_logfile_format), A. Luotonen. World Wide Web Consortium, July 1995, ht<span>tp://</span>www.<span>w3.</span>org/pub/WWW/Daemon/User/Config/Logging.html
+\[ELF\]|[_Extended Log File Format_](http://www.w3.org/pub/WWW/TR/WD-logfile-960221.html), P. M. Hallam-Baker, B. Behlendorf. World Wide Web Consortium, 23 March 1996. This edition of the Extended Log File Format Working Draft is ht<span>tp://</span>www.<span>w3.</span>org/pub/WWW/TR/WD-logfile-960221.html. The [latest edition of Extended Log File Format](https://www.w3.org/TR/WD-logfile.html) is available at ht<span>tp://</span>www.<span>w3.</span>org/TR/WD-logfile.html
