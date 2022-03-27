@@ -5,7 +5,7 @@ This is a subset (and parody) of [W3C Working Draft Extended Log File Format](ht
 An improved format for human log files (such as diaries and journals) is presented. The format is extensible, permitting a wider range of human data to be captured. This proposal is motivated by the need to capture a wider range of journal data for analysis and also the future need for diaries for the artificially intelligent of the future.
 
 ## Introduction
-Most notebooks offer the option of usage as logfiles in whatever format the human author may choose. The [common log file](http://www.w3.org/pub/WWW/Daemon/User/Config/Logging.html#common_logfile_format) [&#91;CLF&#93;](#References) and extended log file formats are supported by the majority of software analysis tools, however they are not designed for human loggers. In many cases it is desirable to record human information by a human. Human loggers proficient in programming may wish to include the recording of emotional and cognitive data. In addition, ambiguities arise in analyzing the common log file and extended log file formats, since they provide no option to convey how the human logger feels. The human-extended log file format is designed to meet the following needs:
+Most notebooks offer the option of usage as logfiles in whatever format the human author may choose. The [common log file](http://www.w3.org/pub/WWW/Daemon/User/Config/Logging.html#common_logfile_format) [&#91;CLF&#93;](#References) and extended log file formats are supported by the majority of software analysis tools, however they are not designed for human loggers. In many cases it is desirable to record human information by a human. Human loggers proficient in programming may wish to include the recording of emotional and cognitive data. In addition, ambiguities arise in analyzing the common log file and extended log file formats, since they provide no option to convey how the human logger feels. The human-extended logfile format is designed to meet the following needs:
 
 - Permit diary entries.
 - Support needs of user's therapists.
@@ -47,7 +47,7 @@ The directives `Version` and `Fields` are required and should precede all entrie
 
 ### Example
 
-The following is an example file in the human extended log format:
+The following is an example file in the human extended logfile format:
 
 ```
 #Version: 1.0
