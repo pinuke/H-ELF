@@ -221,7 +221,7 @@ DNS name.
 Numeric IP address and optional port specifier.
 
 ## Acknowledgments
-Robert Thau provided useful advice and some code. John Mallery and Roger Hurwitz helped develop many of the ideas.
+Robert Thau provided useful advice and some code in the original extended logfile format specification. John Mallery and Roger Hurwitz helped develop many of the ideas in the original extended logfile format specification.
 
 ## References
 
